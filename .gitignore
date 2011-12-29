@@ -1,0 +1,6 @@
+# General
+.DS_Store
+*.sw[a-z]
+
+# Config
+config/
