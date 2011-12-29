@@ -8,5 +8,12 @@ use Symfony\Component\ClassLoader\UniversalClassLoader;
 
 $loader = new UniversalClassLoader();
 $loader->registerNamespaces(array(
-    'Symfony' => __DIR__.'/vendor'
+    'Symfony'   => array(__DIR__.'/vendor', __DIR__.'/vendor/Silex/vendor')
+  , 'Silex'     => array(__DIR__.'/vendor/Silex/src')
+  , 'OAuth2'    => __DIR__.'/vendor/oauth2-php/src'
+  , 'MultiPass' => __DIR__.'/vendor/MultiPass/src'
 ));
+$loader->registerPrefixes(array(
+    'Pimple' => __DIR__.'/vendor/Silex/vendor/pimple/lib'
+));
+$loader->register();
