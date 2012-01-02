@@ -3,4 +3,5 @@
 *.sw[a-z]
 
 # Config
-config/
+config/facebook.yml
+config/twitter.yml

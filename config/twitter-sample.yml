@@ -1,0 +1,5 @@
+# Twitter configuration for MultiPass
+client_id:     ''
+client_secret: ''
+client_options:
+  oauth_callback: 'http://yoursite.com/twitter/callback'
