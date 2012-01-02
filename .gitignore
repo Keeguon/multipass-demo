@@ -4,4 +4,6 @@
 
 # Config
 config/facebook.yml
+config/foursquare.yml
+config/instagram.yml
 config/twitter.yml
