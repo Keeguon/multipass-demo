@@ -6,6 +6,7 @@ require_once 'bootstrap.php';
 // MultiPass configuration
 $config    = \Symfony\Component\Yaml\Yaml::parse(__DIR__.'/config/facebook.yml');
 $multipass = new \MultiPass\MultiPass('facebook', $config);
+error_log(print_r($multipass->provider, true));
 
 // Silex application
 $app = new \Silex\Application();
