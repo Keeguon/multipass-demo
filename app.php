@@ -1,26 +1,43 @@
 <?php
 
+// Bootstrap
+// ---------
+
 require_once 'bootstrap.php';
+session_start();
 
-
-// MultiPass configuration
-$config    = \Symfony\Component\Yaml\Yaml::parse(__DIR__.'/config/facebook.yml');
-$multipass = new \MultiPass\MultiPass('facebook', $config);
-error_log(print_r($multipass->provider, true));
 
 // Silex application
+// -----------------
+
 $app = new \Silex\Application();
 
-$app->get('/facebook', function() use($app, $multipass) {
-  $multipass->request_phase();
-});
 
-$app->get('/facebook/callback', function() use($app, $multipass) {
+// Routes
+// ------
+
+$app->get('/{provider}', function($provider) use($app) {
+  // Initialize MultiPass
+  $config    = \Symfony\Component\Yaml\Yaml::parse(__DIR__.'/config/'.$provider.'.yml');
+  $multipass = new \MultiPass\MultiPass($provider, $config);
+  
+  // Do the request phase routine using MultiPass
+  $multipass->request_phase();
+})
+->assert('provider', '^(facebook|twitter)$');
+
+$app->get('/{provider}/callback', function($provider) use($app) {
+  // Initialize MultiPass
+  $config    = \Symfony\Component\Yaml\Yaml::parse(__DIR__.'/config/'.$provider.'.yml');
+  $multipass = new \MultiPass\MultiPass($provider, $config);
+  
+  // Do the callback phase routine using MultiPass
   $auth_hash = $multipass->callback_phase();
 
   echo "<pre>";
   print_r($auth_hash->toArray());
   echo "</pre>";
-});
+})
+->assert('provider', '^(facebook|twitter)$');
 
 $app->run();
