@@ -15,11 +15,10 @@ $app->get('/facebook', function() use($app, $multipass) {
 });
 
 $app->get('/facebook/callback', function() use($app, $multipass) {
-  $multipass->callback_phase();
-  $response = $multipass->provider->token->get($multipass->provider->client->site.'/me', array('parse' => 'json'));
+  $auth_hash = $multipass->callback_phase();
 
   echo "<pre>";
-  print_r($response->parse());
+  print_r($auth_hash->toArray());
   echo "</pre>";
 });
 
