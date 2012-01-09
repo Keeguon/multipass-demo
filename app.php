@@ -24,7 +24,7 @@ $app->get('/{provider}', function($provider) use($app) {
   // Do the request phase routine using MultiPass
   $multipass->request_phase();
 })
-->assert('provider', '^(facebook|foursquare|instagram|twitter)$');
+->assert('provider', '^(facebook|foursquare|github|instagram|twitter)$');
 
 $app->get('/{provider}/callback', function($provider) use($app) {
   // Initialize MultiPass
@@ -38,6 +38,6 @@ $app->get('/{provider}/callback', function($provider) use($app) {
   print_r($auth_hash->toArray());
   echo "</pre>";
 })
-->assert('provider', '^(facebook|foursquare|instagram|twitter)$');
+->assert('provider', '^(facebook|foursquare|github|instagram|twitter)$');
 
 $app->run();

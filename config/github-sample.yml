@@ -1,0 +1,7 @@
+# Foursquare configuration for MultiPass
+client_id:     ''
+client_secret: ''
+token_params:
+  redirect_uri: 'http://multipass.local/github/callback'
+authorize_options:
+  redirect_uri: 'http://multipass.local/github/callback'
