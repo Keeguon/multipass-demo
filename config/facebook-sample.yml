@@ -1,8 +1,7 @@
 # Facebook configuration for MultiPass
-client_id:         ''
-client_secret:     ''
-token_params:
+client_id:     ''
+client_secret: ''
+client_options:
   redirect_uri: 'http://yoursite.com/facebook/callback'
 authorize_options:
-  redirect_uri: 'http://yoursite.com/facebook/callback'
   scope: 'email,user_about_me,user_location,user_website,offline_access'
