@@ -11,7 +11,7 @@ session_start();
 // -----------------------
 
 $multipass = \MultiPass\Configuration::getInstance();
-foreach (array('facebook') as $provider) {
+foreach (array('facebook', 'github') as $provider) {
   $config = \Symfony\Component\Yaml\Yaml::parse(__DIR__.'/config/'.$provider.'.yml');
   $multipass->registerConfig($provider, $config);
 }
@@ -29,7 +29,7 @@ $app = new \Silex\Application();
 
 $app->get('/', function() use ($app) {
   echo "<pre>";
-  print_r($_SERVER);
+  print_r($_REQUEST);
   echo "</pre>";
 });
 
