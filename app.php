@@ -11,7 +11,7 @@ session_start();
 // -----------------------
 
 $multipass = \MultiPass\Configuration::getInstance();
-foreach (array('facebook', 'github') as $provider) {
+foreach (array('facebook', 'foursquare', 'github', 'instagram', 'twitter') as $provider) {
   $config = \Symfony\Component\Yaml\Yaml::parse(__DIR__.'/config/'.$provider.'.yml');
   $multipass->registerConfig($provider, $config);
 }
