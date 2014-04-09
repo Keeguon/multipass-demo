@@ -15,5 +15,6 @@ vendor/
 config/facebook.yml
 config/foursquare.yml
 config/github.yml
+config/google.yml
 config/instagram.yml
 config/twitter.yml

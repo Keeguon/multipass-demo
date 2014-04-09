@@ -1,0 +1,6 @@
+# Google configuration for MultiPass
+client_id:     '498354087124.apps.googleusercontent.com'
+client_secret: '3Ff2EsXdjKV6fAyaWvVL6c1H'
+client_options:
+  redirect_uri: 'http://localhost:9000/auth/google/callback'
+

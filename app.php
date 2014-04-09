@@ -1,9 +1,14 @@
 <?php
 
+// Loader
+// ------
+
+$loader = require_once __DIR__ . "/vendor/autoload.php";
+
+
 // Bootstrap
 // ---------
 
-require_once 'bootstrap.php';
 session_start();
 
 
@@ -11,7 +16,7 @@ session_start();
 // -----------------------
 
 $multipass = \MultiPass\Configuration::getInstance();
-foreach (array('facebook', 'foursquare', 'github', 'instagram', 'twitter') as $provider) {
+foreach (array('facebook', 'foursquare', 'github', 'google', 'instagram', 'twitter') as $provider) {
   $config = \Symfony\Component\Yaml\Yaml::parse(__DIR__.'/config/'.$provider.'.yml');
   $multipass->registerConfig($provider, $config);
 }
@@ -22,6 +27,7 @@ $multipass->register();
 // -----------------
 
 $app = new \Silex\Application();
+$app['debug'] = true;
 
 
 // Routes
@@ -37,7 +43,7 @@ $app->get('/auth/{provider}', function($provider) use ($multipass) {
   $strategy = $multipass->getStrategy($provider);
   $strategy->requestPhase();
 })
-->assert('provider', '^(facebook|foursquare|github|instagram|twitter)$');
+->assert('provider', '^(facebook|foursquare|github|google|instagram|twitter)$');
 
 $app->get('/auth/{provider}/callback', function($provider) use ($multipass) {
   $strategy = $multipass->getStrategy($provider);
@@ -47,6 +53,6 @@ $app->get('/auth/{provider}/callback', function($provider) use ($multipass) {
   print_r($authHash->toArray());
   echo "</pre>";
 })
-->assert('provider', '^(facebook|foursquare|github|instagram|twitter)$');
+->assert('provider', '^(facebook|foursquare|github|google|instagram|twitter)$');
 
 $app->run();
