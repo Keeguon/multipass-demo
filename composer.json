@@ -2,6 +2,6 @@
     "require": {
         "silex/silex": "~1.2.0"
       , "symfony/yaml": "~2.4.3"
-      , "multipass/multipass": "~1.4.0"
+      , "multipass/multipass": "~1.4.1"
     }
 }
